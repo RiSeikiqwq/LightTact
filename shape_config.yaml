@@ -1,0 +1,34 @@
+# LightTact DContact configuration.
+# Mirrors the 9DTact config schema so the calibration scripts work unchanged.
+sensor_id: 1
+calibration_root_dir: calibration
+
+camera_setting:
+  camera_channel: 0
+  resolution: [640, 480]      # width, height
+  fps: 30
+  exposure_ms: 20             # paper III-D: fixed exposure time of 20 ms
+  auto_exposure: false        # paper: must stay disabled (would brighten the dark background)
+  exposure_units: auto        # auto | ms | 100us   (override for exotic camera backends)
+
+camera_calibration:
+  row_points: 5               # 5x5 array of cylindrical bumps
+  col_points: 5
+  grid_distance: 3.0          # legacy single spacing (mm), fallback for row/col distances
+  row_distance_mm: 3.0        # physical spacing between rows (mm)
+  col_distance_mm: 3.0        # physical spacing between columns (mm)
+  camera_calibration_dir: camera_calibration
+  image_format: png
+  row_index_path: /row_index.npy
+  col_index_path: /col_index.npy
+  position_scale_path: /position_scale.npy
+  valid_mask_path: /valid_mask_cropped.npy
+  roi_y0: 255                 # vertical crop of the raw frame (must match author's hardcoded values)
+  roi_y1: 470
+  reference_frames: 10        # N no-contact frames averaged into the reference image
+  segmentation_thresholds: [25, 20, 30, 40]   # t0, t1, t2, t3 from paper III-D
+  vertical_add_mm: 1.0        # extra sensing margin above/below the grid (mm), mirrors calibration_2.py
+  horizontal_add_mm: 0.2      # extra sensing margin left/right of the grid (mm)
+
+dcontact:
+  min_contact_ratio: 0.001    # fraction of valid rectified area that counts as "in contact"

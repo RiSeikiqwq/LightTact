@@ -1,0 +1,35 @@
+calibration_root_dir: test_output
+camera_calibration:
+  camera_calibration_dir: camera_calibration
+  col_distance_mm: 3.0
+  col_index_path: /col_index.npy
+  col_points: 5
+  grid_distance: 3.0
+  horizontal_add_mm: 0.2
+  image_format: png
+  position_scale_path: /position_scale.npy
+  reference_frames: 10
+  roi_y0: 255
+  roi_y1: 470
+  row_distance_mm: 3.0
+  row_index_path: /row_index.npy
+  row_points: 5
+  segmentation_thresholds:
+  - 25
+  - 20
+  - 30
+  - 40
+  valid_mask_path: /valid_mask_cropped.npy
+  vertical_add_mm: 1.0
+camera_setting:
+  auto_exposure: false
+  camera_channel: 0
+  exposure_ms: 20
+  exposure_units: auto
+  fps: 30
+  resolution:
+  - 640
+  - 480
+dcontact:
+  min_contact_ratio: 0.001
+sensor_id: 1
